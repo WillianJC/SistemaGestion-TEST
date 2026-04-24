@@ -1,7 +1,8 @@
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
+const { app, BrowserWindow, ipcMain } = require("electron");
+const path = require("path");
+const db = require("./db.cjs"); // Importar el módulo de base de datos
 
-const isDev = process.env.NODE_ENV === 'development'
+const isDev = process.env.NODE_ENV === "development";
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -10,26 +11,49 @@ function createWindow() {
     resizable: false,
     frame: true,
     autoHideMenuBar: true,
-    title: 'Acceso al Sistema',
+    title: "Acceso al Sistema",
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
+      preload: path.join(__dirname, "preload.cjs"), // Conectar el script de precarga
     },
-  })
+  });
 
   if (isDev) {
-    win.loadURL('http://localhost:5173')
+    win.loadURL("http://localhost:5173");
   } else {
-    win.loadFile(path.join(__dirname, '../dist/index.html'))
+    win.loadFile(path.join(__dirname, "../dist/index.html"));
   }
 }
 
-app.whenReady().then(createWindow)
+app.whenReady().then(() => {
+  // Configurar el handler IPC para consultas a la DB
+  ipcMain.handle("db-query", async (event, query) => {
+    try {
+      const result = await db.runQuery(query);
+      return { success: true, data: result };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  });
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit()
-})
+  // Handler específico para el login y auditoría
+  ipcMain.handle("db-login", async (event, username, pin) => {
+    try {
+      const result = await db.validateLogin(username, pin);
+      return result;
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  });
 
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) createWindow()
-})
+  createWindow();
+});
+
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") app.quit();
+});
+
+app.on("activate", () => {
+  if (BrowserWindow.getAllWindows().length === 0) createWindow();
+});
