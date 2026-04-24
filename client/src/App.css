@@ -1,0 +1,224 @@
+/* ─── Login screen ─────────────────────────────── */
+.screen {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #0d1e3d, #112448);
+  overflow: hidden;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  color: #c8d8f0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  margin: 0 0 12px;
+  text-shadow: 0 0 16px rgba(80, 140, 255, 0.4);
+  border-bottom: 1px solid #1e3a6e;
+  padding-bottom: 10px;
+}
+
+.card-body {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+/* ─── Lock icon ─────────────────────────────────── */
+.lock-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lock-icon {
+  width: 52px;
+  height: 52px;
+  color: #3b7dd8;
+  filter: drop-shadow(0 0 10px rgba(59, 125, 216, 0.5));
+}
+
+/* ─── Numpad ─────────────────────────────────────── */
+.numpad {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.numpad-row {
+  display: flex;
+  gap: 5px;
+}
+
+.num-btn {
+  width: 38px;
+  height: 34px;
+  background: linear-gradient(145deg, #152e5a, #1a3a6e);
+  border: 1px solid #244d8a;
+  border-radius: 5px;
+  color: #a8c4e8;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.num-btn:hover {
+  background: linear-gradient(145deg, #1d3e72, #2150a0);
+  border-color: #3b70cc;
+  color: #ddeeff;
+  box-shadow: 0 0 8px rgba(59, 125, 216, 0.35);
+  transform: translateY(-1px);
+}
+
+.num-btn:active,
+.num-btn--active {
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(145deg, #2a5ba8, #3068c0) !important;
+  border-color: #5090e0 !important;
+  color: #ffffff !important;
+}
+
+.limpiar-btn {
+  width: 81px;
+  padding: 0 8px;
+  font-size: 11px;
+  color: #f0a060;
+  border-color: #5a3a18;
+  background: linear-gradient(145deg, #2a1a08, #3a2410);
+}
+
+.limpiar-btn:hover {
+  background: linear-gradient(145deg, #3a280e, #4a3018);
+  border-color: #c06820;
+  color: #ffc080;
+}
+
+/* ─── Fields ─────────────────────────────────────── */
+.fields-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.field-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.field-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #8ab0d8;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  width: 82px;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.field-icon {
+  width: 12px;
+  height: 12px;
+  color: #4a80c0;
+  flex-shrink: 0;
+}
+
+.field-input {
+  flex: 1;
+  min-width: 0;
+  background: #0c1a34;
+  border: 1px solid #1e3a6e;
+  border-radius: 4px;
+  color: #c8e0ff;
+  font-size: 13px;
+  padding: 5px 8px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field-input:focus {
+  border-color: #3b70cc;
+  box-shadow: 0 0 0 2px rgba(59, 112, 204, 0.2);
+}
+
+/* ─── Action buttons ────────────────────────────── */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.12s ease;
+  min-width: 58px;
+}
+
+.btn-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-iniciar {
+  background: linear-gradient(145deg, #1a6e34, #22913f);
+  color: #90ffb8;
+  border: 1px solid #2ab050;
+  box-shadow: 0 3px 10px rgba(34, 145, 63, 0.3);
+}
+
+.btn-iniciar:hover {
+  background: linear-gradient(145deg, #229040, #2ab850);
+  box-shadow: 0 3px 14px rgba(34, 145, 63, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-cancelar {
+  background: linear-gradient(145deg, #7a1a1a, #a02020);
+  color: #ffb0b0;
+  border: 1px solid #cc3030;
+  box-shadow: 0 3px 10px rgba(160, 32, 32, 0.3);
+}
+
+.btn-cancelar:hover {
+  background: linear-gradient(145deg, #921e1e, #c02828);
+  box-shadow: 0 3px 14px rgba(160, 32, 32, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
